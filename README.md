@@ -22,14 +22,40 @@ A real-time stock sentiment analysis tool that fetches Reddit posts about stocks
 - Streamlit (Web UI)
 - Plotly (Visualizations)
 
+# Reddit Stock Sentiment Analyzer
+
+This project provides real-time stock recommendations by analyzing sentiment from Reddit posts related to specific companies. It leverages a custom-built Transformer model for robust sentiment analysis.
+
 ## How It Works
 
-1. **Data Collection**: The system fetches real-time posts from Reddit related to the input stock name.
-2. **Sentiment Analysis**: Each post is processed through our custom Transformer model. And the already trained weights are used to do inference on them and label them as positive and negative then from which we calculate the score and give recommendation accordingly
-3. **Recommendation Engine**: Aggregates scores to provide:
-   - Positive score > 0.2 → BUY
-   - Negative score < -0.2 → DON'T BUY
-   - Between → HOLD
+Our system provides real-time stock recommendations by leveraging the collective sentiment expressed on Reddit. Here's a breakdown of the process:
+
+1.  **Data Collection**: The system initiates by fetching real-time posts from Reddit that are highly relevant to the input stock name. This ensures we capture the most current public discourse surrounding a given company.
+
+2.  **Sentiment Analysis**: Each collected post undergoes rigorous processing through our custom-built **Transformer Classifier model**. This model, an advanced neural network architecture, is specifically designed for sequential data like text.
+
+    * **Training**: We train our Transformer model on a labeled dataset of Reddit posts, learning to associate linguistic patterns with positive or negative sentiment.
+
+       At its core, the **Transformer Classifier** employs:
+       * **Embedding Layer**: Converts input text (words) into dense vector representations, capturing semantic meaning.
+       * **Positional Encoding**: Since Transformers process words in parallel without inherent sequence understanding, our custom `PositionalEncoding` module injects information about the relative or absolute position of words in the input sequence using sine and cosine functions. This ensures the model understands word order, which is crucial for sentiment.
+       * **Transformer Encoder**: This is the powerhouse of the model, consisting of multiple layers. Each layer contains multi-head self-attention mechanisms, allowing the model to weigh the importance of different words in a sentence relative to each other, and feed-forward neural networks. This architecture excels at capturing long-range dependencies and contextual relationships within the text.
+       * **Classification Head**: A final set of linear layers with a ReLU activation and dropout for regularization, followed by a softmax function, processes the aggregated output from the Transformer Encoder to predict the sentiment (positive or negative).
+  
+    * **Inference**:
+      - The trained Transformer model processes real-time Reddit posts, classifying each as positive or negative to generate an overall sentiment score.
+      - The model utilizes **pre-trained weights**, meaning it has already learned intricate patterns and nuances of language from a vast dataset, enabling highly accurate inference on new, unseen Reddit posts.        - Based on this inference, each post is labeled as either "positive" or "negative," which then contributes to an overall sentiment score.
+
+3.  **Recommendation Engine**: The system aggregates the sentiment scores from all analyzed posts to generate a comprehensive recommendation:
+    * **Positive Score > 0.2**: A strong positive sentiment across Reddit posts indicates a favorable outlook, leading to a **BUY** recommendation.
+    * **Negative Score < -0.2**: A significant negative sentiment suggests potential concerns or a bearish outlook, resulting in a **DON'T BUY** recommendation.
+    * **Between -0.2 and 0.2**: When sentiment is relatively balanced or neutral, the system advises to **HOLD**, suggesting neither strong positive nor negative indicators are present.
+
+This robust framework ensures that our stock recommendations are not just based on raw data, but on a deep, context-aware understanding of public sentiment, powered by state-of-the-art deep learning.
+
+## API
+
+The system exposes a simple API endpoint for stock sentiment prediction using fastAPI. [`POST /predict`]
 
 ## Getting Started
 
