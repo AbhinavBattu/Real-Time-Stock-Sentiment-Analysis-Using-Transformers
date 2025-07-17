@@ -1,8 +1,10 @@
-# Reddit Stock Sentiment Analyzer 🚀📈
-
-![UI Screenshot](ui_screenshot.png) <!-- Replace with actual image path -->
+# Reddit Stock Sentiment Analyzer 📈
 
 A real-time stock sentiment analysis tool that fetches Reddit posts about stocks, analyzes sentiment using a custom Transformer model, and provides actionable trading recommendations.
+
+![UI Screenshot1](https://github.com/AbhinavBattu/Real-Time-Stock-Sentiment-Analysis-Using-Transformers/blob/main/images/Pic1.png) <!-- Replace with actual image path -->
+
+![UI Screenshot2](https://github.com/AbhinavBattu/Real-Time-Stock-Sentiment-Analysis-Using-Transformers/blob/main/images/Pic2.png)
 
 ## 🌟 Features
 
@@ -13,24 +15,14 @@ A real-time stock sentiment analysis tool that fetches Reddit posts about stocks
 - User-friendly Streamlit interface
 
 ## 🛠️ Technologies Used
-
-**Backend:**
 - Python 3.10
 - FastAPI (API framework)
 - PyTorch (Deep Learning)
-- Transformers (NLP model architecture)
 - Feedparser (RSS parsing)
-
-**Frontend:**
 - Streamlit (Web UI)
 - Plotly (Visualizations)
 
-**ML/NLP:**
-- Custom Transformer classifier
-- Positional Encoding
-- Vocabulary-based text processing
-
-## 📊 How It Works
+## How It Works
 
 1. **Data Collection**: The system fetches real-time posts from Reddit related to the input stock name.
 2. **Sentiment Analysis**: Each post is processed through our custom Transformer model. And the already trained weights are used to do inference on them and label them as positive and negative then from which we calculate the score and give recommendation accordingly
@@ -39,7 +31,7 @@ A real-time stock sentiment analysis tool that fetches Reddit posts about stocks
    - Negative score < -0.2 → DON'T BUY
    - Between → HOLD
 
-## 🚀 Getting Started
+## Getting Started
 
 Follow these instructions to get a local copy of the project up and running.
 
